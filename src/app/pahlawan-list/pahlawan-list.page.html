@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Daftar Pahlawan</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/pahlawan-form">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let pahlawan of pahlawan$ | async">
+      <ion-card>
+        <img [src]="pahlawan.imageUrl" />
+        <ion-card-header>
+          <ion-card-title>{{ pahlawan.nama }}</ion-card-title>
+          <ion-card-subtitle>Hero</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ pahlawan.kisah }}
+        </ion-card-content>
+
+        <ion-button fill="clear" (click)="editPahlawan(pahlawan)">Edit</ion-button>
+        <ion-button fill="clear" color="danger" (click)="confirmDelete(pahlawan)">Delete</ion-button>
+      </ion-card>
+  </ion-list>
+
+  <ion-text color="medium" class="ion-text-center" *ngIf="(pahlawan$ | async)?.length === 0">
+    <p class="ion-padding">Belum ada pahlawan yang ditambahkan</p>
+  </ion-text>
+</ion-content>

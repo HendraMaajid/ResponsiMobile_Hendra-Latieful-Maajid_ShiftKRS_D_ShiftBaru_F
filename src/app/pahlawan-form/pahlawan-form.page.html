@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isEditing ? 'Edit Pahlawan' : 'Tambah Pahlawan' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="pahlawanForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nama Pahlawan</ion-label>
+        <ion-input formControlName="nama" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Kisah</ion-label>
+        <ion-textarea formControlName="kisah" rows="4"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Gambar Pahlawan</ion-label>
+        <ion-input formControlName="imageUrl" type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!pahlawanForm.valid">
+        {{ isEditing ? 'Update' : 'Simpan' }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
